@@ -39,7 +39,7 @@
   }
 ````
 
-### 실행결과
+### 실행결과 ( 중간과정 임시 출력 )
 |carror -1 r|banana 6 R|
 |--|--|
 |![](https://i.imgur.com/7YrsrQX.png)|![](https://i.imgur.com/PD8jCmk.png)|
