@@ -24,6 +24,7 @@ public class PushWord {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             InputStr = br.readLine().split(" ");
+            br.close(); //m Close BufferReader
 
             ShiftStr.insert(0,InputStr[0]);
             ShiftNum = Integer.parseInt(InputStr[1]);
@@ -41,16 +42,21 @@ public class PushWord {
 
 
             //m 방향에 따른 조건문 형식
-
             if(CheckDirection[LEFT]) {
                 for(int i=0; i<ShiftNum; i++){
-                   ShiftStr.replace(ShiftStr.length(), ShiftStr.length(), Character.toString(ShiftStr.charAt(0)));
+                   ShiftStr.insert(ShiftStr.length(), ShiftStr.charAt(0));
                    ShiftStr.deleteCharAt(0);
+                }
+            }
+            else if(CheckDirection[RIGHT]) {
+                for(int i=0; i<ShiftNum; i++){
+                   ShiftStr.insert(0, ShiftStr.charAt(ShiftStr.length() - 1));
+                   ShiftStr.deleteCharAt(ShiftStr.length()-1);
                 }
             }
             System.out.println(ShiftStr);
 
-            br.close(); //m Close BufferReader
+
         } catch (IOException e) {
             e.printStackTrace();
         }
