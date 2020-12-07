@@ -14,22 +14,22 @@ public class PushWord {
     public static void main(String[] args) {
 
         StringBuffer ShiftStr = new StringBuffer();
-        int ShiftNum = 0;
-        String ShiftDirection = "";
-        Boolean[] CheckDirection = {false,false};
-        final int LEFT = 0;
+        String[] InputStr;  //m 입력 문자열
+        int ShiftNum = 0;   //m 입력된 문자 이동 횟수
+        String ShiftDirection = "";   //m 입력된 문자 이동 방향
+        Boolean[] CheckDirection = {false,false}; //m 음수의 경우, 문자 이동 방향을 반대로 하기 위한 상태 불린
+        final int LEFT = 0; //m 매직넘버를 없애기 위한, 상수로 CheckDirection 불린 배열의 방향을 표시함.
         final int RIGHT = 1;
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            String[] InputStr = br.readLine().split(" ");
+            InputStr = br.readLine().split(" ");
 
             ShiftStr.insert(0,InputStr[0]);
             ShiftNum = Integer.parseInt(InputStr[1]);
             ShiftDirection = InputStr[2];
 
-            CheckDirection[LEFT] = ShiftDirection.equalsIgnoreCase("L");
+            CheckDirection[LEFT] = ShiftDirection.equalsIgnoreCase("L");  //m 대소문자 상관없이 비교하는 equalsIgnoreCase() 메소드 사용
             CheckDirection[RIGHT] = ShiftDirection.equalsIgnoreCase("R");
 
             //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
@@ -39,16 +39,16 @@ public class PushWord {
                 ShiftNum = Math.abs(ShiftNum);
             }
 
+
             //m 방향에 따른 조건문 형식
 
             if(CheckDirection[LEFT]) {
-                System.out.println("L");
-                System.out.println(ShiftNum);
-            }else if(CheckDirection[RIGHT]) {
-                System.out.println("R");
-                System.out.println(ShiftNum);
+                for(int i=0; i<ShiftNum; i++){
+                   ShiftStr.replace(ShiftStr.length(), ShiftStr.length(), Character.toString(ShiftStr.charAt(0)));
+                   ShiftStr.deleteCharAt(0);
+                }
             }
-
+            System.out.println(ShiftStr);
 
             br.close(); //m Close BufferReader
         } catch (IOException e) {
