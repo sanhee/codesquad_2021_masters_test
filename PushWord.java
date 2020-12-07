@@ -35,20 +35,19 @@ public class PushWord {
 
             //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
             if(( (CheckDirection[LEFT] || CheckDirection[RIGHT]) && ShiftNum < 0)) {
-                CheckDirection[RIGHT] = !CheckDirection[RIGHT];
-                CheckDirection[LEFT] = !CheckDirection[LEFT];
+                CheckDirection[RIGHT] = !CheckDirection[RIGHT]; //m 불린값 반전
+                CheckDirection[LEFT] = !CheckDirection[LEFT]; //m 불린값 반전
                 ShiftNum = Math.abs(ShiftNum);
             }
 
-
             //m 방향에 따른 조건문 형식
-            if(CheckDirection[LEFT]) {
+            if(CheckDirection[LEFT]) { //m 왼쪽 쉬프트인 경우
                 for(int i=0; i<ShiftNum; i++){
-                   ShiftStr.insert(ShiftStr.length(), ShiftStr.charAt(0));
+                   ShiftStr.append(ShiftStr.charAt(0));
                    ShiftStr.deleteCharAt(0);
                 }
             }
-            else if(CheckDirection[RIGHT]) {
+            else if(CheckDirection[RIGHT]) { //m 오른쪽 쉬프트인 경우
                 for(int i=0; i<ShiftNum; i++){
                    ShiftStr.insert(0, ShiftStr.charAt(ShiftStr.length() - 1));
                    ShiftStr.deleteCharAt(ShiftStr.length()-1);
