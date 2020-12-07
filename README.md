@@ -10,15 +10,41 @@
 > 컴파일 및 실행되지 않을 경우 불합격
 > 자기만의 기준으로 최대한 간결하게 코드를 작성한다.
 
-### 예시
->(입력) apple 3 L 
-><br>(출력) leapp
+### 핵심코드
+```java
+  // mutable class로 자유롭게 인스턴스의 값을 변경하기 위해 사용
+  StringBuffer ShiftStr = new StringBuffer(); 
+  
+  ...
+  
+   //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
+  if(( (CheckDirection[LEFT] || CheckDirection[RIGHT]) && ShiftNum < 0)) {
+      CheckDirection[RIGHT] = !CheckDirection[RIGHT]; //m 불린값 반전
+      CheckDirection[LEFT] = !CheckDirection[LEFT]; //m 불린값 반전
+      ShiftNum = Math.abs(ShiftNum);
+  }
+  ...
+    //m 방향에 따른 조건문 형식
+  if(CheckDirection[LEFT]) { //m 왼쪽 쉬프트인 경우
+      for(int i=0; i<ShiftNum; i++){
+         ShiftStr.append(ShiftStr.charAt(0));
+         ShiftStr.deleteCharAt(0);
+      }
+  }
+  else if(CheckDirection[RIGHT]) { //m 오른쪽 쉬프트인 경우
+      for(int i=0; i<ShiftNum; i++){
+         ShiftStr.insert(0, ShiftStr.charAt(ShiftStr.length() - 1));
+         ShiftStr.deleteCharAt(ShiftStr.length()-1);
+      }
+  }
+````
 
->(입력) banana 6 R
-><br>(출력) banana
+### 실행결과
+|carror -1 r|banana 6 R|
+|--|--|
+|![](https://i.imgur.com/7YrsrQX.png)|![](https://i.imgur.com/PD8jCmk.png)|
 
->(입력)  carrot -1 r
-><br>(출력) arrotc
+|apple 3 L|cat -4 R|
+|--|--|
+|![](https://i.imgur.com/TkmkuEa.png)|![](https://i.imgur.com/uN2TK69.png)|
 
->(입력) cat -4 R
-><br>(출력) atc
