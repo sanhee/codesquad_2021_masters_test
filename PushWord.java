@@ -16,6 +16,9 @@ public class PushWord {
         StringBuffer ShiftStr = new StringBuffer();
         int ShiftNum = 0;
         String ShiftDirection = "";
+        Boolean[] CheckDirection = {false,false};
+        final int LEFT = 0;
+        final int RIGHT = 1;
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,12 +29,28 @@ public class PushWord {
             ShiftNum = Integer.parseInt(InputStr[1]);
             ShiftDirection = InputStr[2];
 
+            CheckDirection[LEFT] = ShiftDirection.equalsIgnoreCase("L");
+            CheckDirection[RIGHT] = ShiftDirection.equalsIgnoreCase("R");
 
-            System.out.println(ShiftStr);
-            System.out.println(ShiftNum);
-            System.out.println(ShiftDirection);
+            //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
+            if(( (CheckDirection[LEFT] || CheckDirection[RIGHT]) && ShiftNum < 0)) {
+                CheckDirection[RIGHT] = !CheckDirection[RIGHT];
+                CheckDirection[LEFT] = !CheckDirection[LEFT];
+                ShiftNum = Math.abs(ShiftNum);
+            }
 
-            br.close();
+            //m 방향에 따른 조건문 형식
+
+            if(CheckDirection[LEFT]) {
+                System.out.println("L");
+                System.out.println(ShiftNum);
+            }else if(CheckDirection[RIGHT]) {
+                System.out.println("R");
+                System.out.println(ShiftNum);
+            }
+
+
+            br.close(); //m Close BufferReader
         } catch (IOException e) {
             e.printStackTrace();
         }
