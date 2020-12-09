@@ -6,26 +6,10 @@ import java.io.InputStreamReader;
 
 public class FlatCube {
 
-    public static void PrintCube(){
 
-        String[][] CubeArray = {
-          {"R","R","W"},   //m 00 01 02
-          {"G","C","W"},   //m 10 11 12
-          {"G","B","B"}    //m 20 21 22
-        };
-
-        for(int i=0;i<CubeArray.length;i++)
-        {
-            for(int j=0;j<CubeArray[0].length;j++)
-            {
-                System.out.printf("%2s",CubeArray[i][j]);
-            }
-            System.out.println();
-        }
-    }
     public static void main(String[] args) {
 
-        PrintCube();
+        PrintCube PrintCube = new PrintCube();
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -42,7 +26,7 @@ public class FlatCube {
                 else {
                     System.out.println(KeyInputCommand[i]);
                 }
-                PrintCube();
+                PrintCube.PrintCube();
 
             }
             br.close(); //m Close BufferedReader
