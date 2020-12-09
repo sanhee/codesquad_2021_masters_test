@@ -22,7 +22,18 @@ public class FlatCube {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("CUBE> "); //m CLI 입력 표시
-            System.out.println(br.readLine());
+            String[] ShiftCommand = br.readLine().split("");
+
+            for(int i=0 ; i<ShiftCommand.length;i++){
+
+                if(ShiftCommand[i+1] != null && ShiftCommand[i+1].equals("`")) {
+                    System.out.println(ShiftCommand[i]+ShiftCommand[i+1]);
+                    i++;
+                }
+                else {
+                    System.out.println(ShiftCommand[i]);
+                }
+            }
 
             br.close(); //m Close BufferedReader
         } catch (IOException e) {
