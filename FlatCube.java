@@ -28,12 +28,10 @@ public class FlatCube {
                     if (i != KeyInputCommand.length - 1 && KeyInputCommand[i + 1].equals("`")) {  //m 다음 배열 순번의 데이터값이 `일 경우, 이어 붙여서 출력함.
                         System.out.println(KeyInputCommand[i] + KeyInputCommand[i + 1]);
                         PrintCube.SetShiftType(KeyInputCommand[i] + KeyInputCommand[i + 1]);
-                        PrintCube.SetCubeArray();
                         i++; //m  `이후부터 출력하기 위해 사용한 증감식
                     } else {
                         System.out.println(KeyInputCommand[i]);
                         PrintCube.SetShiftType(KeyInputCommand[i]);
-                        PrintCube.SetCubeArray();
                     }
 
                     PrintCube.PrintCube();
