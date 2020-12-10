@@ -4,55 +4,49 @@ public class PrintCube {
 
     private String[][] CubeArray;
 
-    public PrintCube(){
+    public PrintCube(){            //m 생성자 함수
         CubeArray = new String[][]{
                 {"R", "R", "W"},   //m 00 01 02
                 {"G", "C", "W"},   //m 10 11 12
                 {"G", "B", "B"}    //m 20 21 22
         };
-        PrintCube();
+        DisplayAll();
     }
 
-    public void SetShiftType(String InputCommand){
+    public void SetShiftType(String InputCommand){ //m 입력된 명령어에 따라 배열 쉬프트 방향을 결정하는 함수
 
-        //m 매직넘버를 없애기 위한 상수 (추후, enum으로 변경할 것)
-        int ROW = 1;
-        int COL = 2;
-        int UP = -1;
-        int DOWN = 1;
-        int LEFT = -1;
-        int RIGHT = 1;
+        System.out.println(InputCommand);
+
+        //m 매직넘버를 없애기 위한 상수
+        final int ROW = 1;
+        final int COL = 2;
+        final int UP = -1;
+        final int DOWN = 1;
+        final int LEFT = -1;
+        final int RIGHT = 1;
 
         switch (InputCommand){
             case "U`":
-                SetCubeArray(0, RIGHT, ROW);
-                break;
             case "B":
-                SetCubeArray(2, RIGHT, ROW);
+                SetCubeArray(InputCommand, RIGHT, ROW);
                 break;
             case "L":
-                SetCubeArray(0, DOWN, COL);
-                break;
             case "R`":
-                SetCubeArray(2, DOWN, COL);
+                SetCubeArray(InputCommand, DOWN, COL);
                 break;
             case "U":
-                SetCubeArray(0, LEFT, ROW);
-                break;
             case "B`":
-                SetCubeArray(2, LEFT, ROW);
+                SetCubeArray(InputCommand, LEFT, ROW);
                 break;
             case "L`":
-                SetCubeArray(0, UP, COL);
-                break;
             case "R":
-                SetCubeArray(2, UP, COL);
+                SetCubeArray(InputCommand, UP, COL);
                 break;
         }
 
     }
 
-    public String[][] CopyCubeArray(String[][] tempArray){
+    public String[][] CopyCubeArray(String[][] tempArray){ //m 큐뷰를 임시 배열에 복사하는 함수
         for(int i=0;i<this.CubeArray.length;i++) {
             for(int j=0;j<this.CubeArray[0].length;j++) {
                  tempArray[i][j] = this.CubeArray[i][j];
@@ -61,40 +55,41 @@ public class PrintCube {
         return tempArray;
     }
 
-    public void SetCubeArray(int fixNum, int ShiftDirection, int ShiftType){
+    public void SetCubeArray(String InputCommand, int ShiftDirection, int ShiftType){ //m 큐브 데이터를 수정하는 함수
 
-        final int ROW = 1;
-        final int COL = 2;
+        final int ROW = 1; //m ShiftType 구분자 상수
+        final int COL = 2; //m ShiftType 구분자 상수
 
-        int cnt;
-        String[][] tempArray = CopyCubeArray(new String[3][3]);
+        int ShiftPosCalculate; //m 값이 쉬프트 될 배열 위치를 담는 변수
+        String[][] tempArray = CopyCubeArray(new String[3][3]); //m 큐브 데이터 임시 배열에 복사
+        Boolean RowColMaxCheck = (InputCommand.equals("B") || InputCommand.equals("B`") || InputCommand.equals("R") || InputCommand.equals("R`"));
+        int FixPos= RowColMaxCheck ? 2 : 0;
 
         switch (ShiftType){
             case ROW:
                 for(int i=0;i<this.CubeArray.length;i++){
-                    cnt = i+ShiftDirection > 2 ? 0 : i+ShiftDirection < 0  ? 2 : i+ShiftDirection;
-                    this.CubeArray[fixNum][cnt] = tempArray[fixNum][i];
+                    ShiftPosCalculate = i+ShiftDirection > 2 ? 0 : i+ShiftDirection < 0  ? 2 : i+ShiftDirection;
+                    this.CubeArray[FixPos][ShiftPosCalculate] = tempArray[FixPos][i];
                 }
                 break;
             case COL:
                 for(int i=0;i<this.CubeArray[0].length;i++){
-                    cnt = i+ShiftDirection > 2 ? 0 : i+ShiftDirection < 0 ? 2 : i+ShiftDirection;
-                    this.CubeArray[cnt][fixNum] = tempArray[i][fixNum];
+                    ShiftPosCalculate = i+ShiftDirection > 2 ? 0 : i+ShiftDirection < 0 ? 2 : i+ShiftDirection;
+                    this.CubeArray[ShiftPosCalculate][FixPos] = tempArray[i][FixPos];
                 }
                 break;
         }
 
     }
 
-    public void PrintCube(){
+    public void DisplayAll(){
 
-        for(int i=0;i<this.CubeArray.length;i++)
-        {
-            for(int j=0;j<this.CubeArray[0].length;j++)
-            {
+        for(int i=0;i<this.CubeArray.length;i++) {
+            for(int j=0;j<this.CubeArray[0].length;j++) {
                 System.out.printf("%2s",this.CubeArray[i][j]);
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
