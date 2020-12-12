@@ -17,22 +17,36 @@ public class RubiksCube {
 
         switch (tag){
             case 0:
-                PrintFirstCube();
+            case 5:
+                PrintFirstOrLastCube();
                 break;
             case 1:
             case 2:
             case 3:
             case 4:
-                PrintMiddleCube();
-                break;
-            case 5:
-                PrintLastCube();
                 break;
 
         }
 
     }
 
+
+    private void PrintFirstOrLastCube() {
+
+        StringBuilder strTemp = new StringBuilder();
+
+        for(int i=0;i<this.CubeArray.length;i++) {
+            for(int j=0;j<this.CubeArray[0].length;j++) {
+                strTemp.append(CubeArray[i][j]);
+
+                if(j>0 && j % 2 == 0){
+                    System.out.printf("%20s",strTemp);
+                    strTemp.delete(0,strTemp.length());
+                }
+            }
+            System.out.println();
+        }
+    }
 
 
 }
