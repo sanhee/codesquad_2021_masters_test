@@ -30,9 +30,16 @@ public class CubeMain {
     }
     public static void main(String[] args) {
 
+        RubiksCube[] CubeBoard = new RubiksCube[6];
+
+        for(int i=0;i<6;i++)
+        {
+            CubeBoard[i] = new RubiksCube(i);
+            CubeBoard[i].DisplayCube(i);
+        }
+
         CubeMain cubeMain = new CubeMain();
         cubeMain.KeyboardInput();
-
 
     }
 
