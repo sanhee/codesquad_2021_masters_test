@@ -2,8 +2,28 @@ package com.sanhee.step3;
 
 public class RubiksCube {
 
-    private String[][] CubeArray = new String[3][3];
     public static String[] MiddleCubeStr = new String[]{"","",""};
+    public static String[][][] CopyCubeArray = new String[4][3][3];
+
+    private String[][] CubeArray = new String[3][3];
+
+    public void DisplayCube(int tag){
+
+        switch (tag){
+            case 0:
+            case 5:
+                CreateFirstOrLastStr();
+                break;
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                CreateMiddleCube();
+                break;
+
+        }
+
+    }
 
     public RubiksCube(int tag){
         for(int i=0;i<this.CubeArray.length;i++) {
@@ -11,6 +31,52 @@ public class RubiksCube {
                 this.CubeArray[i][j] = String.format("%s",TagToName(tag));
             }
         }
+    }
+
+
+    public void SetCubeFrontCW(int tag, boolean CopyUpdateCheck, RubiksCube[] CubeBoard){
+
+        if (!CopyUpdateCheck) {
+            CopyCubeArray[0] = GetCubeContents(CubeBoard[1]);
+            CopyCubeArray[1] = GetCubeContents(CubeBoard[5]);
+            CopyCubeArray[2] = GetCubeContents(CubeBoard[0]);
+            CopyCubeArray[3] = GetCubeContents(CubeBoard[3]);
+        }
+
+        if (tag == 0 ){
+            this.CubeArray[2][0] = CopyCubeArray[0][2][2];
+            this.CubeArray[2][1] = CopyCubeArray[0][1][2];
+            this.CubeArray[2][2] = CopyCubeArray[0][0][2];
+        }
+        else if (tag == 1 ){
+            this.CubeArray[0][2] = CopyCubeArray[1][0][0];
+            this.CubeArray[1][2] = CopyCubeArray[1][0][1];
+            this.CubeArray[2][2] = CopyCubeArray[1][0][2];
+        }
+        else if (tag == 3 ){
+            this.CubeArray[0][0] = CopyCubeArray[2][2][0];
+            this.CubeArray[1][0] = CopyCubeArray[2][2][1];
+            this.CubeArray[2][0] = CopyCubeArray[2][2][2];
+        }
+        else if (tag == 5){
+            this.CubeArray[0][0] = CopyCubeArray[3][2][0];
+            this.CubeArray[0][1] = CopyCubeArray[3][1][0];
+            this.CubeArray[0][2] = CopyCubeArray[3][0][0];
+        }
+
+
+    }
+    private String[][] GetCubeContents(RubiksCube CubeBoard){
+
+        String[][] copyCube = new String[3][3];
+
+        for (int i = 0; i < CubeBoard.CubeArray.length; i++) {
+            for (int j = 0; j < CubeBoard.CubeArray[i].length; j++) {
+                copyCube[i][j] = CubeBoard.CubeArray[i][j];
+            }
+        }
+
+        return copyCube;
     }
 
     private String TagToName(int tag){ //m 처음 큐브 객체 생성시 태그를 기준으로 엘리먼트의 이름을 지정
@@ -41,23 +107,6 @@ public class RubiksCube {
         return Name.toString();
     }
 
-    public void DisplayCube(int tag){
-
-        switch (tag){
-            case 0:
-            case 5:
-                CreateFirstOrLastStr();
-                break;
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-                CreateMiddleCube();
-                break;
-
-        }
-
-    }
 
     private void PrintFirstOrLastCube(StringBuilder strTemp, int j){
         if(j>0 && j % 2 == 0){
