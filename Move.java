@@ -11,6 +11,12 @@ public class Move {
             case "F`":
                 ReadyFrontInverted(CubeBoard);
                 break;
+            case "R":
+                ReadyRightClockWise(CubeBoard);
+                break;
+            case "R`":
+                ReadyRightInverted(CubeBoard);
+                break;
         }
     }
 
@@ -29,5 +35,17 @@ public class Move {
       CubeBoard[5].SetCubeFrontCCW(5,true,CubeBoard);
     }
 
+    private void ReadyRightClockWise(RubiksCube[] CubeBoard){
+        CubeBoard[0].SetCubeRightCW(0,false,CubeBoard);
+        CubeBoard[2].SetCubeRightCW(2,true,CubeBoard);
+        CubeBoard[4].SetCubeRightCW(4,true,CubeBoard);
+        CubeBoard[5].SetCubeRightCW(5,true,CubeBoard);
+    }
+    private void ReadyRightInverted(RubiksCube[] CubeBoard){
+        CubeBoard[0].SetCubeRightCCW(0,false,CubeBoard);
+        CubeBoard[2].SetCubeRightCCW(2,true,CubeBoard);
+        CubeBoard[4].SetCubeRightCCW(4,true,CubeBoard);
+        CubeBoard[5].SetCubeRightCCW(5,true,CubeBoard);
+    }
 
 }
