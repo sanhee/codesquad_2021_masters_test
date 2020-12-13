@@ -13,7 +13,7 @@ public class RubiksCube {
         }
     }
 
-    private String TagToName(int tag){
+    private String TagToName(int tag){ //m 처음 큐브 객체 생성시 태그를 기준으로 엘리먼트의 이름을 지정
 
         StringBuilder Name = new StringBuilder();
 
@@ -100,11 +100,12 @@ public class RubiksCube {
                 MiddleCubeStr[i] = CreateMiddleStr(MiddleCubeStr[i].length(), j, MiddleCubeStr[i], this.CubeArray[i][j]);
             }
         }
-        if(MiddleCubeStr[0].length()>23){ //m 중앙 큐브의 컨텐츠가 모두 채워진 경우
+        if(MiddleCubeStr[0].length()>29){ //m 중앙 큐브의 컨텐츠가 모두 채워진 경우
             PrintMiddleCube(); //m 중앙부분 큐브 출력
+            MiddleCubeStr = new String[]{"","",""};
         }
     }
-    private void PrintMiddleCube() {
+    public void PrintMiddleCube() {
         for(int i=0;i<MiddleCubeStr.length;i++) {
             System.out.printf("%s",MiddleCubeStr[i]);
             System.out.println();
