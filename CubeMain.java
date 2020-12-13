@@ -51,9 +51,10 @@ public class CubeMain {
         char num = KeyInputCommand.charAt(0);
         return Character.isDigit(num);
     }
-    private String AddCommandStr(String KeyInputCommand, int period){
+    private String[] AddCommandStr(String KeyInputCommand, int period){
         StringBuilder preCommand = new StringBuilder();
         StringBuilder newCommand = new StringBuilder();
+        String[] NewKeyInputCommand = new String[]{""};
 
         preCommand.append(KeyInputCommand);
         newCommand.append(KeyInputCommand);
@@ -61,23 +62,25 @@ public class CubeMain {
         for(int i=0 ; i<period-1 ; i++){
             newCommand.append(preCommand);
         }
-        return newCommand.toString();
+        NewKeyInputCommand = newCommand.toString().split("");
+        return NewKeyInputCommand;
     }
     private void CheckGraveAccentOrNumber(RubiksCube[] CubeBoard, String[] KeyInputCommand){
 
         Move move = new Move();
+        String[] NewKeyInputCommand = new String[]{""};
 
         for (int i = 0; i < KeyInputCommand.length; i++) {
 
             if (i != KeyInputCommand.length - 1 && KeyInputCommand[i + 1].equals("`")) {  //m 다음 배열 순번의 데이터값이 `일 경우, 이어 붙여서 출력함.
                 ControlNum++;
-                System.out.println(KeyInputCommand[i]);
+                System.out.println(KeyInputCommand[i]+KeyInputCommand[i+1]);
                 DisplayCubeAll(CubeBoard);
                 i++; //m  `이후부터 출력하기 위해 사용한 증감식
             }
-            else if (i != KeyInputCommand.length - 1 && IsDigit(KeyInputCommand[i + 1])) {  //m 다음 배열 순번의 데이터값이 숫자 경우,
-                KeyInputCommand[i+1] = AddCommandStr(KeyInputCommand[i],Integer.parseInt(KeyInputCommand[i + 1]));
-                CheckGraveAccentOrNumber(CubeBoard,KeyInputCommand);
+            else if (i != KeyInputCommand.length - 1 && IsDigit(KeyInputCommand[i + 1])) {  //m 다음 배열 순번의 데이터값이 숫자 경우, 함수 재호출
+                NewKeyInputCommand = AddCommandStr(KeyInputCommand[i],Integer.parseInt(KeyInputCommand[i + 1]));
+                CheckGraveAccentOrNumber(CubeBoard,NewKeyInputCommand);
                 i++; //m  숫자 이후부터 출력하기 위해 사용한 증감식
             }
             else {
