@@ -6,15 +6,21 @@ import java.io.InputStreamReader;
 
 public class CubeMain {
 
-    private int ControlNum = 0;
-    public void CheckExit(String exit){
+    private int ControlNum = 0; //m 조작개수
+
+    public void CheckExit(String exit, TimeChecker timeChecker){
         if ( exit.equals("Q") ){
-            System.out.println("Bye~");
+            timeChecker.setEndTime();
+            System.out.println("경과시간: "+timeChecker.elapsedTime()+" 초");
+            System.out.println("조작갯수: "+ControlNum);
+            System.out.println("이용해주셔서 감사합니다. 뚜뚜뚜");
             System.exit(0);
         }
     }
 
     public void KeyboardInput(){
+        TimeChecker timeChecker = new TimeChecker();
+        timeChecker.setStartTime();
 
         RubiksCube[] CubeBoard = new RubiksCube[6];
 
@@ -29,7 +35,7 @@ public class CubeMain {
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 System.out.print("CUBE> "); //m CLI 입력 표시
                 String[] KeyInputCommand = br.readLine().split(""); //m 입력값을 한글자씩 잘라서 배열에 삽입함.
-                CheckExit(KeyInputCommand[0]); //m 종료(Q) 검사
+                CheckExit(KeyInputCommand[0],timeChecker); //m 종료(Q) 검사
                 CheckGraveAccentOrNumber(CubeBoard, KeyInputCommand); //m 커맨드 문자열 중 `를 검사하여 존재할 경우 전 문자와 이어붙임
 
 
