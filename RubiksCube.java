@@ -39,7 +39,6 @@ public class RubiksCube {
         for(int i=0;i<this.CubeArray.length;i++) {
             for(int j=0;j<this.CubeArray[0].length;j++) {
                 strTemp.append(CubeArray[i][j]+" ");
-
                 if(j>0 && j % 2 == 0){
                     System.out.printf("%24s",strTemp);
                     strTemp.delete(0,strTemp.length());
@@ -49,31 +48,29 @@ public class RubiksCube {
         }
     }
 
-    private String CreateStr(int len, int j, String str,String str2){
-        StringBuilder strBuilder = new StringBuilder(str);
+    private String CreateMiddleStr(int len, int j, String MiddleStr,String newMiddleStr){
+        StringBuilder MiddleStrBuilder = new StringBuilder(MiddleStr);
 
-        if(len>3 && j==0)
-        {
-            strBuilder.append("\t\t").append(str2+" ");
+        if(len>3 && j==0) { //m 중앙 두번째 큐브부터 공백을 만들기 위한 조건
+            MiddleStrBuilder.append("\t\t").append(newMiddleStr).append(" ");
         }
-        else{
-            strBuilder.append(str2+" ");
+        else{ //m 중앙 좌측 공백없는 첫번째 큐브를 만들기 위한 조건
+            MiddleStrBuilder.append(newMiddleStr).append(" ");
         }
 
-        str = strBuilder.toString();
+        MiddleStr = MiddleStrBuilder.toString();
 
-
-        return str;
+        return MiddleStr;
     }
 
     private void CreateMiddleCube(){
         for(int i=0;i<this.CubeArray.length;i++) {
             for(int j=0;j<this.CubeArray[i].length;j++) {
-                MiddleCubeStr[i] = CreateStr(MiddleCubeStr[i].length(), j, MiddleCubeStr[i], this.CubeArray[i][j]);
+                MiddleCubeStr[i] = CreateMiddleStr(MiddleCubeStr[i].length(), j, MiddleCubeStr[i], this.CubeArray[i][j]);
             }
         }
-        if(MiddleCubeStr[0].length()>23){
-            PrintMiddleCube();
+        if(MiddleCubeStr[0].length()>23){ //m 중앙 큐브의 컨텐츠가 모두 채워진 경우
+            PrintMiddleCube(); //m 중앙부분 큐브 출력
         }
     }
     private void PrintMiddleCube() {
