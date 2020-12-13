@@ -21,10 +21,10 @@ public class CubeMain {
 
     private String[] CheckRandomInput(String[] command){
         ArrayList<String> randomList = new ArrayList<String>();
-        randomList.add("FR2U`FRR'U2R3");
+        randomList.add("FR2U`FRR`U2R3");
         randomList.add("F3R3U2FR2U`");
         randomList.add("U2B2F");
-        randomList.add("U3BRBFR2U``");
+        randomList.add("U3BRBFR2U`");
         randomList.add("B`FR2FR2U`");
         randomList.add("FR2U`FR2U`");
 
