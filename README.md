@@ -16,13 +16,12 @@
   StringBuffer ShiftStr = new StringBuffer(); 
   
   ...
-  
-   //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
-  if(( (CheckDirection[LEFT] || CheckDirection[RIGHT]) && ShiftNum < 0)) {
-      CheckDirection[RIGHT] = !CheckDirection[RIGHT]; //m 불린값 반전
-      CheckDirection[LEFT] = !CheckDirection[LEFT]; //m 불린값 반전
-      ShiftNum = Math.abs(ShiftNum);
-  }
+  //m 쉬프트 횟수가 음수 일 경우, 방향 정보를 반대로 바꾸기 위한 조건문
+        if(ShiftNum < 0) {
+            CheckDirection[RIGHT] = !CheckDirection[RIGHT]; //m 불린값 반전
+            CheckDirection[LEFT] = !CheckDirection[LEFT]; //m 불린값 반전
+            ShiftNum = Math.abs(ShiftNum); //m 음수 절대값으로 변환
+        }
   ...
     //m 방향에 따른 조건문 형식
   if(CheckDirection[LEFT]) { //m 왼쪽 쉬프트인 경우
