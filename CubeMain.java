@@ -81,6 +81,7 @@ public class CubeMain {
             if (i != KeyInputCommand.length - 1 && KeyInputCommand[i + 1].equals("`")) {  //m 다음 배열 순번의 데이터값이 `일 경우, 이어 붙여서 출력함.
                 ControlNum++;
                 System.out.println(KeyInputCommand[i]+KeyInputCommand[i+1]);
+                move.CubeElements(CubeBoard,KeyInputCommand[i]+KeyInputCommand[i+1]);
                 DisplayCubeAll(CubeBoard);
                 i++; //m  `이후부터 출력하기 위해 사용한 증감식
             }
