@@ -9,6 +9,7 @@
  - [step-2 브랜치 바로가기](https://github.com/sanhee/codesquad_2021_masters_test/tree/step-2)
 ### 3단계: 루빅스 큐브 구현하기
  - 2020.12.11(금) Start
+ - 2020.12.13(일) ☑
  - [step-3 브랜치 바로가기](https://github.com/sanhee/codesquad_2021_masters_test/tree/step-3)
 
 
