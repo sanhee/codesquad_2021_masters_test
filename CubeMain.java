@@ -47,7 +47,13 @@ public class CubeMain {
         }
     }
 
+    private boolean IsDigit(String KeyInputCommand){
+        char num = KeyInputCommand.charAt(0);
+        return Character.isDigit(num);
+    }
     private void CheckGraveAccentOrNumber(RubiksCube[] CubeBoard, String[] KeyInputCommand){
+
+        Move move = new Move();
 
         for (int i = 0; i < KeyInputCommand.length; i++) {
 
@@ -57,7 +63,7 @@ public class CubeMain {
                 DisplayCubeAll(CubeBoard);
                 i++; //m  `이후부터 출력하기 위해 사용한 증감식
             }
-            else if (i != KeyInputCommand.length - 1 && KeyInputCommand[i + 1].equals("2")) {  //m 테스트, 다음 배열 순번의 데이터값이 숫자 경우
+            else if (i != KeyInputCommand.length - 1 && IsDigit(KeyInputCommand[i + 1])) {  //m 다음 배열 순번의 데이터값이 숫자 경우,
                 KeyInputCommand[i+1] = KeyInputCommand[i];
                 CheckGraveAccentOrNumber(CubeBoard,KeyInputCommand);
                 i++; //m  `이후부터 출력하기 위해 사용한 증감식
@@ -65,9 +71,9 @@ public class CubeMain {
             else {
                 ControlNum++;
                 System.out.println(KeyInputCommand[i]);
+                move.CubeElements(CubeBoard,KeyInputCommand[i]);
                 DisplayCubeAll(CubeBoard);
             }
-            System.out.println("조작개수: "+ControlNum);
         }
     }
 
