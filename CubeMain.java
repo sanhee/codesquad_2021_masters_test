@@ -3,6 +3,7 @@ package com.sanhee.step3;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class CubeMain {
 
@@ -19,10 +20,20 @@ public class CubeMain {
     }
 
     private String[] CheckRandomInput(String[] command){
+        ArrayList<String> randomList = new ArrayList<String>();
+        randomList.add("FR2U`FRR'U2R3");
+        randomList.add("F3R3U2FR2U`");
+        randomList.add("U2B2F");
+        randomList.add("U3BRBFR2U``");
+        randomList.add("B`FR2FR2U`");
+        randomList.add("FR2U`FR2U`");
 
         if (command[0].equals("*")){
-            String[] RandomCommand = new String[]{"F", "R"};
+            int random = (int)(Math.random()*randomList.size());
 
+            String[] RandomCommand = randomList.get(random).split("");
+            System.out.println("▶ 생성된 무작위 문자열 : "+randomList.get(random));
+            System.out.println();
             return RandomCommand;
         }
 
@@ -71,6 +82,7 @@ public class CubeMain {
         char num = KeyInputCommand.charAt(0);
         return Character.isDigit(num);
     }
+
     private String[] AddCommandStr(String KeyInputCommand, int period){
         StringBuilder preCommand = new StringBuilder();
         StringBuilder newCommand = new StringBuilder();
@@ -85,6 +97,7 @@ public class CubeMain {
         NewKeyInputCommand = newCommand.toString().split("");
         return NewKeyInputCommand;
     }
+
     private void CheckGraveAccentOrNumber(RubiksCube[] CubeBoard, String[] KeyInputCommand){
 
         Move move = new Move();
