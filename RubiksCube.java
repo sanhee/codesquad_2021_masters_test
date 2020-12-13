@@ -18,7 +18,7 @@ public class RubiksCube {
         switch (tag){
             case 0:
             case 5:
-                PrintFirstOrLastCube();
+                CreateFirstOrLastStr();
                 break;
             case 1:
             case 2:
@@ -31,18 +31,21 @@ public class RubiksCube {
 
     }
 
+    private void PrintFirstOrLastCube(StringBuilder strTemp, int j){
+        if(j>0 && j % 2 == 0){
+            System.out.printf("%24s",strTemp);
+            strTemp.delete(0,strTemp.length());
+        }
+    }
 
-    private void PrintFirstOrLastCube() {
+    private void CreateFirstOrLastStr() {
 
         StringBuilder strTemp = new StringBuilder();
 
         for(int i=0;i<this.CubeArray.length;i++) {
             for(int j=0;j<this.CubeArray[0].length;j++) {
-                strTemp.append(CubeArray[i][j]+" ");
-                if(j>0 && j % 2 == 0){
-                    System.out.printf("%24s",strTemp);
-                    strTemp.delete(0,strTemp.length());
-                }
+                strTemp.append(CubeArray[i][j]).append(" ");
+                PrintFirstOrLastCube(strTemp,j);
             }
             System.out.println();
         }
