@@ -29,6 +29,12 @@ public class Move {
             case "B`":
                 ReadyBottomInverted(CubeBoard);
                 break;
+            case "L":
+                ReadyLeftClockWise(CubeBoard);
+                break;
+            case "L`":
+                ReadyLeftInverted(CubeBoard);
+                break;
         }
     }
 
@@ -87,4 +93,16 @@ public class Move {
         CubeBoard[5].SetCubeBottomCCW(5,true,CubeBoard);
     }
 
+    private void ReadyLeftClockWise(RubiksCube[] CubeBoard){
+        CubeBoard[0].SetCubeLeftCW(0,false,CubeBoard);
+        CubeBoard[2].SetCubeLeftCW(2,true,CubeBoard);
+        CubeBoard[4].SetCubeLeftCW(4,true,CubeBoard);
+        CubeBoard[5].SetCubeLeftCW(5,true,CubeBoard);
+    }
+    private void ReadyLeftInverted(RubiksCube[] CubeBoard){
+        CubeBoard[0].SetCubeLeftCCW(0,false,CubeBoard);
+        CubeBoard[2].SetCubeLeftCCW(2,true,CubeBoard);
+        CubeBoard[4].SetCubeLeftCCW(4,true,CubeBoard);
+        CubeBoard[5].SetCubeLeftCCW(5,true,CubeBoard);
+    }
 }

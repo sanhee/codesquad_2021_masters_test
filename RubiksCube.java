@@ -33,6 +33,73 @@ public class RubiksCube {
         }
     }
 
+    public void SetCubeLeftCW(int tag, boolean CopyUpdateCheck, RubiksCube[] CubeBoard){
+
+        if (!CopyUpdateCheck) {
+            CopyCubeArray[0] = GetCubeContents(CubeBoard[4]);
+            CopyCubeArray[1] = GetCubeContents(CubeBoard[0]);
+            CopyCubeArray[2] = GetCubeContents(CubeBoard[5]);
+            CopyCubeArray[3] = GetCubeContents(CubeBoard[2]);
+        }
+
+        if (tag == 0 ){
+            this.CubeArray[0][0] = CopyCubeArray[0][2][2];
+            this.CubeArray[1][0] = CopyCubeArray[0][1][2];
+            this.CubeArray[2][0] = CopyCubeArray[0][0][2];
+        }
+        else if (tag == 2 ){
+            this.CubeArray[0][0] = CopyCubeArray[1][0][0];
+            this.CubeArray[1][0] = CopyCubeArray[1][1][0];
+            this.CubeArray[2][0] = CopyCubeArray[1][2][0];
+        }
+        else if (tag == 4 ){
+            this.CubeArray[0][2] = CopyCubeArray[2][2][0];
+            this.CubeArray[1][2] = CopyCubeArray[2][1][0];
+            this.CubeArray[2][2] = CopyCubeArray[2][0][0];
+        }
+        else if (tag == 5){
+            this.CubeArray[0][0] = CopyCubeArray[3][0][0];
+            this.CubeArray[1][0] = CopyCubeArray[3][1][0];
+            this.CubeArray[2][0] = CopyCubeArray[3][2][0];
+        }
+
+
+    }
+
+    public void SetCubeLeftCCW(int tag, boolean CopyUpdateCheck, RubiksCube[] CubeBoard){
+
+        if (!CopyUpdateCheck) {
+            CopyCubeArray[0] = GetCubeContents(CubeBoard[2]);
+            CopyCubeArray[1] = GetCubeContents(CubeBoard[5]);
+            CopyCubeArray[2] = GetCubeContents(CubeBoard[0]);
+            CopyCubeArray[3] = GetCubeContents(CubeBoard[4]);
+        }
+
+        if (tag == 0 ){
+            this.CubeArray[0][0] = CopyCubeArray[0][0][0];
+            this.CubeArray[1][0] = CopyCubeArray[0][1][0];
+            this.CubeArray[2][0] = CopyCubeArray[0][2][0];
+        }
+        else if (tag == 2 ){
+            this.CubeArray[0][0] = CopyCubeArray[1][0][0];
+            this.CubeArray[1][0] = CopyCubeArray[1][1][0];
+            this.CubeArray[2][0] = CopyCubeArray[1][2][0];
+        }
+        else if (tag == 4 ){
+            this.CubeArray[0][2] = CopyCubeArray[2][2][0];
+            this.CubeArray[1][2] = CopyCubeArray[2][1][0];
+            this.CubeArray[2][2] = CopyCubeArray[2][0][0];
+        }
+        else if (tag == 5){
+            this.CubeArray[0][0] = CopyCubeArray[3][2][2];
+            this.CubeArray[1][0] = CopyCubeArray[3][1][2];
+            this.CubeArray[2][0] = CopyCubeArray[3][0][2];
+        }
+
+
+    }
+
+
     public void SetCubeBottomCW(int tag, boolean CopyUpdateCheck, RubiksCube[] CubeBoard){
 
         if (!CopyUpdateCheck) {
