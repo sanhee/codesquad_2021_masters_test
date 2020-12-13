@@ -8,8 +8,8 @@ public class CubeMain {
 
     private int ControlNum = 0; //m 조작개수
 
-    public void CheckExit(String exit, TimeChecker timeChecker){
-        if ( exit.equals("Q") ){
+    private void CheckExit(String command, TimeChecker timeChecker){
+        if ( command.equals("Q") ){
             timeChecker.setEndTime();
             System.out.println("경과시간: "+timeChecker.elapsedTime()+" 초");
             System.out.println("조작갯수: "+ControlNum);
@@ -18,7 +18,19 @@ public class CubeMain {
         }
     }
 
-    public void KeyboardInput(){
+    private String[] CheckRandomInput(String[] command){
+
+        if (command[0].equals("*")){
+            String[] RandomCommand = new String[]{"F", "R"};
+
+            return RandomCommand;
+        }
+
+        return command;
+    }
+
+
+    private void KeyboardInput(){
         TimeChecker timeChecker = new TimeChecker();
         timeChecker.setStartTime();
 
@@ -36,6 +48,8 @@ public class CubeMain {
                 System.out.print("CUBE> "); //m CLI 입력 표시
                 String[] KeyInputCommand = br.readLine().split(""); //m 입력값을 한글자씩 잘라서 배열에 삽입함.
                 CheckExit(KeyInputCommand[0],timeChecker); //m 종료(Q) 검사
+
+                KeyInputCommand = CheckRandomInput(KeyInputCommand); //m 무작위 출력 명령어(*)가 들어왔는지 검사
                 CheckGraveAccentOrNumber(CubeBoard, KeyInputCommand); //m 커맨드 문자열 중 `를 검사하여 존재할 경우 전 문자와 이어붙임
 
 

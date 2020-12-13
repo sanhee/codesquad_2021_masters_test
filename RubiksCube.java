@@ -3,7 +3,7 @@ package com.sanhee.step3;
 public class RubiksCube {
 
     public static String[] MiddleCubeStr = new String[]{"","",""};
-    public static String[][][] CopyCubeArray = new String[4][3][3];
+    public static String[][][] CopyCubeArray = new String[4][3][3]; //m 큐브 배열 요소 변경을 위해 임시로 가지는 공간
 
     private String[][] CubeArray = new String[3][3];
 
@@ -514,7 +514,7 @@ public class RubiksCube {
             MiddleCubeStr = new String[]{"","",""};
         }
     }
-    public void PrintMiddleCube() {
+    private void PrintMiddleCube() {
         for(int i=0;i<MiddleCubeStr.length;i++) {
             System.out.printf("%s",MiddleCubeStr[i]);
             System.out.println();
