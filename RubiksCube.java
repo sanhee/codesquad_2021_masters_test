@@ -8,9 +8,37 @@ public class RubiksCube {
     public RubiksCube(int tag){
         for(int i=0;i<this.CubeArray.length;i++) {
             for(int j=0;j<this.CubeArray[0].length;j++) {
-                this.CubeArray[i][j] = String.format("%s",tag);
+                this.CubeArray[i][j] = String.format("%s",TagToName(tag));
             }
         }
+    }
+
+    private String TagToName(int tag){
+
+        StringBuilder Name = new StringBuilder();
+
+        switch (tag){
+            case 0:
+                Name.append("B");
+                break;
+            case 1:
+                Name.append("W");
+                break;
+            case 2:
+                Name.append("O");
+                break;
+            case 3:
+                Name.append("G");
+                break;
+            case 4:
+                Name.append("Y");
+                break;
+            case 5:
+                Name.append("R");
+                break;
+        }
+
+        return Name.toString();
     }
 
     public void DisplayCube(int tag){
